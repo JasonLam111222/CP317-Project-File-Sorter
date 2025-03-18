@@ -7,14 +7,15 @@ public class Main {
         String supplierFilePath = "SupplierFile.txt";
         String outputPath = "output.txt";
 
-        FileHandler reader = new InputFileReader();
+        FileHandler productReader = new InputFileReader();
+        FileHandler supplierReader = new InputFileReader();
         FileHandler writer = new OutputFileWriter();
 
         try {
-            List<Product> products = reader.readData(productFilePath);
-            List<Product> suppliers = reader.readData(supplierFilePath);
+            List<Product> products = productReader.readData(productFilePath);
+            List<Product> suppliers = supplierReader.readData(supplierFilePath);
 
-            products.addAll(suppliers);
+            products.addAll(suppliers); // Combine product and supplier data
             ProductSorter.sortProducts(products);
 
             writer.writeData(outputPath, products);
